@@ -5,7 +5,7 @@
     <ul>
       <li>
         <%= driver.ride_id %>
-        <%= driver.name %>
+        <%= link_to driver.name, driver_path(driver) %>
         <%= driver.vin %>
         <%= driver.available %>
       </li>
