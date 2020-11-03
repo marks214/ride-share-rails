@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   # driver routes
   get '/drivers', to: 'drivers#index', as: 'drivers'
-  get '/drivers/new', to: 'drivers#new'
+  get '/drivers/new', to: 'drivers#new', as: 'new_driver'
   post '/drivers', to: 'drivers#create'
 
 
