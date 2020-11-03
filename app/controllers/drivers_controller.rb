@@ -42,7 +42,7 @@ class DriversController < ApplicationController
     result = @driver.update(driver_params)
 
     if result
-      redirect_to drivers_path(@driver.id)
+      redirect_to drivers_path
     else
       render :edit
     end
@@ -55,7 +55,7 @@ class DriversController < ApplicationController
       redirect_to root_path
       return
     elsif driver.destroy
-      redirect_to root_path
+      redirect_to drivers_path
       return
     end
   end

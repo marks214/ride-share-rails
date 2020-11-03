@@ -9,4 +9,9 @@
         <%= @driver.available %>
       </li>
     </ul>
+    <%= link_to 'Edit Driver', edit_driver_path(@driver.id) %>
+    <br>
+    <%= link_to 'Delete Driver', confirm_driver_path(@driver.id) %>
+    <br>
+    <%= link_to 'Back to Driver List', drivers_path %>
   </div>

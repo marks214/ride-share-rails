@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get '/drivers/:id/edit', to: 'drivers#edit', as: 'edit_driver'
   patch '/drivers/:id', to: 'drivers#update'
   get 'drivers/:id/confirm_delete', to: 'drivers#confirm', as: 'confirm_driver'
-  delete '/drivers/:id', to: 'drivers#delete', as: 'delete_driver'
+  delete '/drivers/:id', to: 'drivers#delete'
 
 
 end
