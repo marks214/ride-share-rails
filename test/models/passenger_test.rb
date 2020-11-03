@@ -64,7 +64,7 @@ describe Passenger do
       # Your code here
     end
 
-    describe "complete trip" do
+    describe "complete trips" do
       # Your code here
     end
     # You may have additional methods to test here
