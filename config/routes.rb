@@ -3,4 +3,7 @@ Rails.application.routes.draw do
   root to: 'trips#index'
   get '/trips', to: 'trips#index', as: 'trips'
 
+  # Passengers routes
+  get '/passengers', to: 'passengers#index', as: 'passengers'
+
 end
