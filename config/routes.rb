@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   root to: 'trips#index'
   get '/trips', to: 'trips#index', as: 'trips'
   get '/drivers', to: 'drivers#index', as: 'drivers'
+  get '/drivers/:id', to: 'drivers#show'
 
 end
