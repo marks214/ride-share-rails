@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/ride-share-rails.iml" filepath="$PROJECT_DIR$/.idea/ride-share-rails.iml" />
+      <module fileurl="file://$USER_HOME$/Desktop/Ada/Projects/task-list/.idea/task-list.iml" filepath="$USER_HOME$/Desktop/Ada/Projects/task-list/.idea/task-list.iml" />
     </modules>
   </component>
 </project>
