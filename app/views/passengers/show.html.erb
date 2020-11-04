@@ -1,15 +1,27 @@
-<h3>Passenger:</h3>
+<h3>Passenger Details</h3>
+<h5>Passenger: <%= @passenger.name %></h5>
+<h5>Passenger ID: <%= @passenger.id %></h5>
+<h5>Passenger Phone Number: <%= @passenger.phone_num %></h5>
+
+<h5>Trips:</h5>
 <table class="table">
   <tr>
+    <th>Trip ID</th>
+    <th>Driver ID</th>
     <th>Passenger ID</th>
-    <th>Passenger Name</th>
-    <th>Passenger Phone Number</th>
+    <th>Date</th>
+    <th>Rating</th>
+    <th>Cost</th>
   </tr>
-  <td><%= @passenger.id %></td>
-  <td><%= @passenger.name %></td>
-  <td><%= @passenger.phone_num %></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
 </table>
 
+<p>Total amount charged: </p>
 <%= link_to "Back", passengers_path %> ||
 <%= link_to "Edit", edit_passenger_path %> ||
 <%= link_to "Delete", passenger_path(@passenger), method: :delete, data: {
