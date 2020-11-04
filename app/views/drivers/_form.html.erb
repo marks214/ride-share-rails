@@ -2,18 +2,25 @@
 
   <div>
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, required: true %>
   </div>
   <div>
     <%= f.label :vin %>
-    <%= f.text_field :vin %>
+    <%= f.text_field :vin, required: true, message: true %>
   </div>
+  <% if @driver.errors.any? %>
+  <div id="error_explanation">
+    <h3>
+      <%= @driver.errors.full_messages %>
+    </h3>
+  </div>
+    <% end %>
   <div>
     <%= f.label :available %>
-    <%= f.text_field :available %>
+    <%= f.select :available, [['Yes', true], ['No', false]] %>
   </div>
 
-  <%= f.submit %>
+  <%= f.submit button_name, class: "button"%>
 
 
 <% end %>

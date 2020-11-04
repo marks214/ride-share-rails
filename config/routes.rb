@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   # TODO: change root route to homepages after merge
-  root to: 'trips#index'
+  root to: 'homepages#index'
   get '/trips', to: 'trips#index', as: 'trips'
 
 
