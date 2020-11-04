@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   root to: 'trips#index'
   get '/trips', to: 'trips#index', as: 'trips'
 
-
   # driver routes
   get '/drivers', to: 'drivers#index', as: 'drivers'
   get '/drivers/new', to: 'drivers#new', as: 'new_driver'
@@ -18,5 +17,13 @@ Rails.application.routes.draw do
   get 'drivers/:id/confirm_delete', to: 'drivers#confirm', as: 'confirm_driver'
   delete '/drivers/:id', to: 'drivers#delete'
 
+  # Passengers routes
+  get '/passengers', to: 'passengers#index', as: 'passengers'
+  get '/passengers/new', to: 'passengers#new', as: 'new_passenger'
+  post '/passengers', to: 'passengers#create'
 
+  get '/passengers/:id', to: 'passengers#show', as: 'passenger'
+  get '/passengers/:id/edit', to: 'passengers#edit', as: 'edit_passenger'
+  patch '/passengers/:id', to: 'passengers#update'
+  delete '/passengers/:id', to: 'passengers#destroy'
 end
