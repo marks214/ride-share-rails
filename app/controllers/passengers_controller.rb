@@ -24,7 +24,7 @@ class PassengersController < ApplicationController
       redirect_to passenger_path(@passenger)
       return
     else
-      head :not_found
+      render :new
     end
   end
 
