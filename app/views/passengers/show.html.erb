@@ -1,23 +1,16 @@
 <h3>Passenger Details</h3>
+<br>
 <h5>Passenger: <%= @passenger.name %></h5>
-<h5>Passenger ID: <%= @passenger.id %></h5>
-<h5>Passenger Phone Number: <%= @passenger.phone_num %></h5>
-
-<h5>Trips:</h5>
+<!--<h5>Passenger ID: <%#= @passenger.id %></h5>-->
+<!--<h5>Passenger Phone Number: <%#= @passenger.phone_num %></h5>-->
 <table class="table">
   <tr>
-    <th>Trip ID</th>
-    <th>Driver ID</th>
     <th>Passenger ID</th>
-    <th>Date</th>
-    <th>Rating</th>
-    <th>Cost</th>
+    <th>Passenger Phone Number</th>
+    <th>Trip ID</th>
   </tr>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
+  <td><%= @passenger.id %></td>
+  <td><%= @passenger.phone_num %></td>
   <td></td>
 </table>
 
