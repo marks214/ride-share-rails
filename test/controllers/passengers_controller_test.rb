@@ -75,7 +75,6 @@ describe PassengersController do
       must_redirect_to passenger_path(new_passenger.id)
     end
 
-
   end
 
   describe "edit" do
