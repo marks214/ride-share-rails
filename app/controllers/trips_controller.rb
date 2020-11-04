@@ -1,7 +1,64 @@
 class TripsController < ApplicationController
-  belongs_to :driver
-  belongs_to :passenger
-  def index
 
+  def show
+    trip_id = params[:id].to_i
+    @trip = Trip.find_by(id: trip_id)
+
+    if @trip.nil?
+      redirect_to trip_path
+      return
+    end
+  end
+
+  def new
+    @trip = Trip.new
+  end
+
+  def create
+    @trip = Trip.new(trip_params)
+
+    if @trip.save
+      redirect_to trip_path(@trip)
+      return
+    else
+      render :new
+    end
+  end
+
+  def edit
+    @trip = Trip.find_by(id: params[:id])
+
+    if @trip.nil?
+      redirect_to trip_path # change later to  driver or passenger's list of trips
+      return
+    end
+  end
+
+  def update
+    @trip = Trip.find_by(id: params[:id])
+
+    if @trip.nil?
+      redirect_to trip_path # change later to  driver or passenger's list of trips
+    else
+      @trip.update
+      redirect_to trip_path # change later to  driver or passenger's list of trips
+    end
+  end
+
+  def destroy
+    @trip = Trip.find_by(id: params[:id])
+
+    if @trip.nil?
+      redirect_to trip_path # change later to  driver or passenger's list of trips
+      return
+    elsif @trip.destroy
+      redirect_to trip_path # change later to  driver or passenger's list of trips
   end
 end
+
+  private
+
+  def trip_params
+    return params.require(:trip).permit(:id, :ride_id, :driver_id, :passenger_id, :date, :rating, :cost)
+  end
+  end
