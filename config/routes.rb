@@ -4,6 +4,14 @@ Rails.application.routes.draw do
   # TODO: change root route to homepages after merge
   root to: 'trips#index'
   get '/trips', to: 'trips#index', as: 'trips'
+  get '/trips/new', to: 'trips#new', as: 'new_trip'
+  post '/trips', to: 'trips#create'
+
+  get '/trips/:id', to: 'trips#show', as: 'trip'
+  get '/trips/:id/edit', to: 'trips#edit', as: 'edit_trip'
+  patch '/trips/:id', to: 'trips#update'
+  delete '/trips/:id', to: 'trips#destroy'
+
 
   # driver routes
   get '/drivers', to: 'drivers#index', as: 'drivers'
@@ -26,4 +34,6 @@ Rails.application.routes.draw do
   get '/passengers/:id/edit', to: 'passengers#edit', as: 'edit_passenger'
   patch '/passengers/:id', to: 'passengers#update'
   delete '/passengers/:id', to: 'passengers#destroy'
+
+
 end
