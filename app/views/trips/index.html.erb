@@ -1,27 +1,26 @@
-<h2>Test</h2>
 <ul>
   <% if @passenger %>
-    <h5>Trips:</h5>
+    <h3><%= @passenger.name %>'s Trips:</h3>
     <table class="table">
+    <tr>
+      <th>Trip ID</th>
+      <th>Driver Name</th>
+      <th>Date</th>
+      <th>Rating</th>
+      <th>Cost</th>
+    </tr>
+    <% @trips.each do |trip| %>
       <tr>
-        <th>Trip ID</th>
-        <th>Driver Name</th>
-        <th>Date</th>
-        <th>Rating</th>
-        <th>Cost</th>
+        <td><%= link_to trip.id, "/trips/#{trip.id}" %></td>
+        <td><%= trip.driver.name %></td>
+        <td><%= trip.date %></td>
+        <td><%= trip.rating %></td>
+        <td><%= number_to_currency(trip.cost / 100) %></td>
       </tr>
-      <% @trips.each do |trip| %>
-        <tr>
-          <td><%= link_to trip.id, "/trips/#{trip.id}" %></td>
-          <td><%= trip.driver.name %></td>
-          <td><%= trip.date %></td>
-          <td><%= trip.rating %></td>
-          <td><%= number_to_currency(trip.cost / 100) %></td>
-        </tr>
-      <% end %>
-    </table>
+    <% end %>
+  </table>
 
-    <p>Total amount charged: <%= number_to_currency(@passenger.sum_total) %></p>
+    <h5>Total amount charged: <%= number_to_currency(@passenger.sum_total) %></h5>
     <%= link_to "Back", passengers_path %> ||
     <%= link_to "Delete", passenger_path(@passenger.id), method: :delete, data: {
         confirm: "Are you sure you want to delete this passenger?" } %> ||

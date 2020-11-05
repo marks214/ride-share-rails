@@ -1,31 +1,25 @@
-<h3>Passenger Details</h3>
+<h3><%= @passenger.name %>'s Details</h3>
 <br>
-<h5>Passenger: <%= @passenger.name %></h5>
-<h5>Passenger ID: <%= @passenger.id %></h5>
-<h5>Passenger Phone Number: <%= @passenger.phone_num %></h5>
-<br>
-<%= link_to "View All Trips", passenger_trips_path(@passenger.id) %>
-<h5>Trips:</h5>
+<!--<h5>Passenger: <%#= @passenger.name %></h5>-->
+<!--<h5>Passenger ID: <%#= @passenger.id %></h5>-->
+<!--<h5>Passenger Phone Number: <%#= @passenger.phone_num %></h5>-->
+<!--<br>-->
+<%#= link_to "View All Trips", passenger_trips_path(@passenger.id) %>
+<!--<h5>Trips:</h5>-->
 <table class="table">
   <tr>
-    <th>Trip ID</th>
-    <th>Driver Name</th>
-    <th>Date</th>
-    <th>Rating</th>
-    <th>Cost</th>
+    <th>Passenger ID</th>
+    <th>Passenger Phone Number</th>
+    <th>Trips</th>
+    <th>Total</th>
   </tr>
-  <% @trips.each do |trip| %>
-    <tr>
-    <td><%= link_to trip.id, "/trips/#{trip.id}" %></td>
-    <td><%= trip.driver.name %></td>
-    <td><%= trip.date %></td>
-    <td><%= trip.rating %></td>
-    <td><%= number_to_currency(trip.cost) %></td>
-    </tr>
-  <% end %>
+  <td><%= @passenger.id %></td>
+  <td><%= @passenger.phone_num %></td>
+  <td><%= link_to "View All Trips", passenger_trips_path(@passenger.id) %></td>
+  <td><%= number_to_currency(@passenger.sum_total) %></td>
 </table>
 
-<p>Total amount charged: <%= number_to_currency(@passenger.sum_total) %></p>
+<!--<p>Total amount charged: <%#= number_to_currency(@passenger.sum_total) %></p>-->
 <%= link_to "Back", passengers_path %> ||
 <%= link_to "Edit", edit_passenger_path %> ||
 <%= link_to "Delete", passenger_path(@passenger.id), method: :delete, data: {
