@@ -1,11 +1,6 @@
 class PassengersController < ApplicationController
   def index
-    if params[:trip_id].nil?
       @passengers = Passenger.all
-    else
-      @trip = Trip.find_by(id: params[:id]).passenger_id
-      @passengers = @trip.passenger_id
-    end
   end
 
   def show
@@ -22,12 +17,7 @@ class PassengersController < ApplicationController
   end
 
   def new
-    if params[:trip_id].nil?
       @passenger = Passenger.new
-    else
-      trip = Trip.find_by(id: params[:trip_id])
-      @passenger = trip.passenger_id.new
-    end
   end
 
   def create

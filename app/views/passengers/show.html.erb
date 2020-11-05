@@ -4,6 +4,7 @@
 <h5>Passenger ID: <%= @passenger.id %></h5>
 <h5>Passenger Phone Number: <%= @passenger.phone_num %></h5>
 <br>
+<%= link_to "View All Trips", passenger_trips_path(@passenger.id) %>
 <h5>Trips:</h5>
 <table class="table">
   <tr>
@@ -19,7 +20,7 @@
     <td><%= trip.driver.name %></td>
     <td><%= trip.date %></td>
     <td><%= trip.rating %></td>
-    <td><%= trip.cost %></td>
+    <td><%= number_to_currency(trip.cost) %></td>
     </tr>
   <% end %>
 </table>

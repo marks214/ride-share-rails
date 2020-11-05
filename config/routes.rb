@@ -32,7 +32,7 @@ Rails.application.routes.draw do
 
   # Passengers routes
   resources :passengers do
-    resources :trips, only: [:new, :create]
+    resources :trips, only: [:index, :new, :create]
   end
 
   resources :trips

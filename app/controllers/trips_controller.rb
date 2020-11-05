@@ -1,5 +1,14 @@
 class TripsController < ApplicationController
 
+  def index
+    if params[:passenger_id].nil? || params[:driver_id].nil?
+      @trips = Trip.all
+    else
+      @passenger = Passenger.find_by(id: params[:id]).trips
+      @trips = passenger.trips
+    end
+  end
+
   def show
     @trip = Trip.find_by(id: params[:id])
     @driver = Driver.where(driver_id: @trip.id)
@@ -11,7 +20,13 @@ class TripsController < ApplicationController
   end
 
   def new
+    if params[:passenger_id].nil? || params[:driver_id].nil?
       @trip = Trip.new
+    else
+      @passenger = Passenger.find_by(id: params[:id]).trips
+      @trip = trips.passenger.new
+    end
+
   end
 
   def create
@@ -61,4 +76,4 @@ end
   def trip_params
     return params.require(:trip).permit(:id, :driver_id, :passenger_id, :date, :rating, :cost)
   end
-  end
+end
