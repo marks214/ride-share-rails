@@ -1,4 +1,4 @@
-ride_id,driver_id,passenger_id,date,rating,cost
+id,driver_id,passenger_id,date,rating,cost
 1,1,54,2016-04-05,3,1293
 2,67,146,2016-01-13,5,2157
 3,50,87,2016-05-02,3,1181
