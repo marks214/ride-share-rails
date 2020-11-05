@@ -10,8 +10,8 @@
       <th>Trip Rating</th>
     </tr>
     <tr>
-      <td><%= @trip.passenger.name %></td>
-      <td><%= @trip.driver.name %></td>
+      <td><%= link_to @trip.passenger.name, "/passengers/#{@trip.passenger.id}" %></td>
+      <td><%= link_to @trip.driver.name, "/drivers/#{@trip.driver.id}" %></td>
       <td><%= @trip.date %></td>
       <td><%= number_to_currency(@trip.cost) %></td>
       <% if @trip.rating %>
