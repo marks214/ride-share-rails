@@ -6,6 +6,8 @@ class PassengersController < ApplicationController
   def show
     passenger_id = params[:id].to_i
     @passenger = Passenger.find_by(id: passenger_id)
+    @trips = Trip.where(passenger_id: @passenger.id)
+    @driver = Driver.find_by(id: params[:id])
 
     if @passenger.nil?
       redirect_to passengers_path
