@@ -57,6 +57,7 @@ class PassengersController < ApplicationController
     else
       @passenger.destroy
       redirect_to passengers_path
+      return
     end
   end
 

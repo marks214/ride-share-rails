@@ -1,4 +1,5 @@
 class Driver < ApplicationRecord
   has_many :trips
-  validates :vin, length: { is: 17, message: "VIN must be 17 characters"}, presence: true
+  validates :name, presence: true
+  validates :vin, length: { is: 17, message: "can't be blank"}, presence: true
 end

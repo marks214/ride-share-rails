@@ -123,7 +123,7 @@ describe PassengersController do
         delete passenger_path(id)
       }.must_change "Passenger.count", -1
 
-      deleted_passenger = Passenger.find_by(name: "Sample Person")
+      deleted_passenger = Passenger.find_by(id: id)
       expect(deleted_passenger).must_be_nil
 
       must_respond_with :redirect
