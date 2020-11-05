@@ -3,8 +3,8 @@ class PassengersController < ApplicationController
     if params[:trip_id].nil?
       @passengers = Passenger.all
     else
-      @trip = Trip.find_by(id: params[:id]).passengers
-      @passengers = @trip.passengers
+      @trip = Trip.find_by(id: params[:id]).passenger_id
+      @passengers = @trip.passenger_id
     end
   end
 
@@ -12,6 +12,7 @@ class PassengersController < ApplicationController
     passenger_id = params[:id].to_i
     @passenger = Passenger.find_by(id: passenger_id)
     @trips = Trip.where(passenger_id: @passenger.id)
+    # @trip = Trip.find_by(id: params[:id]).passenger
     @driver = Driver.find_by(id: params[:id])
 
     if @passenger.nil?
@@ -25,7 +26,7 @@ class PassengersController < ApplicationController
       @passenger = Passenger.new
     else
       trip = Trip.find_by(id: params[:trip_id])
-      @passenger = trip.passengers.new
+      @passenger = trip.passenger_id.new
     end
   end
 
@@ -76,7 +77,7 @@ class PassengersController < ApplicationController
   private
 
   def passenger_params
-    return params.require(:passenger).permit(:id, :name, :phone_num)
+    return params.require(:passenger).permit(:id, :name, :phone_num, :trip_id)
   end
 
 end

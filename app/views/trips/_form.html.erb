@@ -1,0 +1,13 @@
+<%= form_with model: @trip, class: 'create-trip' do |f| %>
+  <p>Please fill in the details to add a new trip:</p>
+
+  <div class=trip-form">
+    <%= f.label :driver_id %>
+    <%= f.text_field :driver_id %>
+
+    <%= f.label :passenger_id %>
+    <%= f.text_field :passenger_id %>
+  </div>
+
+  <%= f.submit action_name  %>
+<% end  %>
