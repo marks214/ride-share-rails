@@ -5,6 +5,8 @@ class DriversController < ApplicationController
 
   def show
     @driver = Driver.find_by(id: params[:id])
+    @trips = Trip.where(driver_id: @driver.id)
+    @passengers = Passenger.find_by(id: params[:id])
   end
 
   def new
@@ -63,6 +65,6 @@ class DriversController < ApplicationController
   private
 
   def driver_params
-    return params.require(:driver).permit(:id, :ride_id, :name, :vin, :available, :created_at, :updated_at)
+    return params.require(:driver).permit(:id, :name, :vin, :available, :created_at, :updated_at)
   end
 end

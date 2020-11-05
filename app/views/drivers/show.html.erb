@@ -1,7 +1,7 @@
 <h3>Driver Details for <%= @driver.name %></h3>
 <br>
 
-<h5>VIN: @driver.vin</h5>
+<h5>VIN: <%= @driver.vin %></h5>
 
   <div class="driver">
     <table class="table">
@@ -11,12 +11,25 @@
       <th>Trip Cost</th>
       <th>Trip Rating</th>
     </tr>
-      <td><%= @driver.ride_id %></td>
-      <td><%= "How?" %></td>
-      <td><%= "@driver.cost" %></td>
-      <td><%= "@driver.rating" %></td>
+      <% total_earnings = 0.0 %>
+      <% sum_ratings = 0.0 %>
+      <% total_trips = 0 %>
+      <% @trips.each do |trip| %>
+        <tr>
+      <td><%= trip.id %></td>
+      <td><%= trip.passenger.name %></td>
+      <td><%= trip.cost %>
+        <% total_earnings += trip.cost %></td>
+      <td><%= trip.rating %>
+        <% total_trips += 1 %>
+        <% sum_ratings += trip.rating %></td>
+        </tr>
+        <% end %>
     </table>
-    <p>Earnings: </p>
+    <div class="info">
+      <h5>Gross Earnings: <%= number_to_currency(total_earnings)%></h5>
+      <h5>Average Rating: <%= sum_ratings/total_trips%></h5>
+    </div>
     <%= link_to 'Back', drivers_path %> ||
     <%= link_to 'Edit', edit_driver_path %> ||
     <%= link_to 'Delete', driver_path(@driver.id), method: :delete, data:{
