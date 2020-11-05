@@ -1,20 +1,15 @@
 <%= form_with model: @driver, class: 'create-driver' do |f| %>
 <p>Please fill in the details to add a new driver:</p>
-  <%if @driver.errors.any? %>
-    <ul>
-      <% @driver.errors.each do |column| %>
-        <li>
-          <%= "#{column}".to_s.upcase %> <%= " requires 17 characters" %>
-        </li>
-      <% end %>
-    </ul>
-    <% end %>
+
   <div>
-    <%= f.label :name %>
+    <%= f.label :name, "Driver Name" %>
     <%= f.text_field :name, required: true %>
   </div>
   <div>
-    <%= f.label :vin %>
+    <%= f.label :vin, "VIN" %>
+    <%if @driver.errors.any? %>
+      <%= " requires 17 characters" %>
+    <% end %>
     <%= f.text_field :vin, required: true%>
   </div>
 

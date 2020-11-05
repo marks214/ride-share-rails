@@ -1,8 +1,16 @@
 <h3>Driver Details for <%= @driver.name %></h3>
 <br>
+<h4>Status:
+  <% if @driver.available %>
+    <%= "Available" %>
+  <% else %>
+    <%= "Unavailable" %>
+  <% end %>
+</h4>
 
 <h5>VIN: <%= @driver.vin %></h5>
 
+<% if @trips.length >= 1 %>
   <div class="driver">
     <table class="table">
     <tr>
@@ -16,9 +24,9 @@
       <% total_trips = 0 %>
       <% @trips.each do |trip| %>
         <tr>
-      <td><%= trip.id %></td>
+      <td><%= link_to trip.id, "/trips/#{trip.id}" %></td>
       <td><%= trip.passenger.name %></td>
-      <td><%= trip.cost %>
+      <td><%= number_to_currency(trip.cost) %>
         <% total_earnings += trip.cost %></td>
       <td><%= trip.rating %>
         <% total_trips += 1 %>
@@ -27,9 +35,18 @@
         <% end %>
     </table>
     <div class="info">
-      <h5>Gross Earnings: <%= number_to_currency(total_earnings)%></h5>
-      <h5>Average Rating: <%= sum_ratings/total_trips%></h5>
+      <h5>Gross Earnings:
+        <%= number_to_currency(total_earnings)%></h5>
+      <h5>Net Earnings:
+        <% net_earnings = 0.8 * (total_earnings - 1.65) %>
+        <%= number_to_currency(net_earnings) %></h5>
+      <h5>Average Rating:
+        <%= number_with_precision(sum_ratings / total_trips, :precision => 2)%></h5>
     </div>
+<% else %>
+  <h2>No Trips to Date</h2>
+<% end %>
+    <%= link_to 'Home', root_path %> ||
     <%= link_to 'Back', drivers_path %> ||
     <%= link_to 'Edit', edit_driver_path %> ||
     <%= link_to 'Delete', driver_path(@driver.id), method: :delete, data:{
