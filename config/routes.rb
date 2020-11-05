@@ -17,7 +17,9 @@ Rails.application.routes.draw do
 
 
   # driver routes
-  resources :drivers
+  resources :drivers do
+    resources :trips, only: [:index, :new, :create]
+  end
 
   # get '/drivers', to: 'drivers#index', as: 'drivers'
   # get '/drivers/new', to: 'drivers#new', as: 'new_driver'

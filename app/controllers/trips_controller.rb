@@ -1,18 +1,21 @@
 class TripsController < ApplicationController
 
   def index
-    if params[:passenger_id].nil? || params[:driver_id].nil?
-      @trips = Trip.all
+    if params[:passenger_id]
+      @passenger = Passenger.find_by(id: params[:passenger_id]) #key from url path
+      @trips = @passenger.trips
+    elsif params[:driver_id]
+      @driver = Driver.find_by(id: params[:driver_id])
+      @trips = @driver.trips
     else
-      @passenger = Passenger.find_by(id: params[:id]).trips
-      @trips = passenger.trips
+      @trips = Trip.all
     end
   end
 
   def show
     @trip = Trip.find_by(id: params[:id])
-    @driver = Driver.where(driver_id: @trip.id)
-    @passenger = Passenger.where(passenger_id: @trip.id)
+    @driver = @trip.driver
+    @passenger = @trip.passenger
     if @trip.nil?
       redirect_to trip_path
       return
@@ -20,11 +23,14 @@ class TripsController < ApplicationController
   end
 
   def new
-    if params[:passenger_id].nil? || params[:driver_id].nil?
-      @trip = Trip.new
+    if params[:passenger_id]
+      @passenger = Passenger.find_by(id: params[:passenger_id])
+      @trip = @passenger.trips.new
+    elsif params[:driver_id]
+      @driver = Driver.find_by(id: params[:driver_id])
+      @trip = @driver.trips.new
     else
-      @passenger = Passenger.find_by(id: params[:id]).trips
-      @trip = trips.passenger.new
+      @trip = Trip.new
     end
 
   end
