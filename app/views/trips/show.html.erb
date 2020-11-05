@@ -1,7 +1,33 @@
-<h3> Trips: </h3>
-<%= @trip.id %>
-<%= @trip.driver_id %>
-<%= @trip.passenger_id %>
-<%= @trip.date %>
-<%= @trip.rating %>
-<%= @trip.cost %>
+<%= form_with model: @trip do |f| %>
+<h3> Trips <%= @trip.id %> Details: </h3>
+<div class="trip">
+  <table class="table">
+    <tr>
+      <th>Passenger Name</th>
+      <th>Driver Name</th>
+      <th>Trip Date</th>
+      <th>Trip Cost</th>
+      <th>Trip Rating</th>
+    </tr>
+    <tr>
+      <td><%= @trip.passenger.name %></td>
+      <td><%= @trip.driver.name %></td>
+      <td><%= @trip.date %></td>
+      <td><%= number_to_currency(@trip.cost) %></td>
+      <% if @trip.rating %>
+        <td><%= @trip.rating%></td>
+      <% else %>
+        <td> <%= f.label :rating, "Rate Trip: " %>
+          <%= f.select :rating, [
+              ['⭐️', 1],
+              ['⭐⭐', 2],
+              ['⭐⭐⭐', 3],
+              ['⭐⭐⭐⭐', 4],
+              ['⭐⭐⭐⭐⭐', 5],
+          ] %> </td>
+      <% end %>
+    </tr>
+  </table>
+</div>
+
+<% end %>
