@@ -2,19 +2,18 @@ require "test_helper"
 
 describe PassengersController do
   before do
-    Passenger.create(ride_id: 1, name: "Sample Person", phone_num: "123-456-7890")
+    Passenger.create(name: "Sample Person", phone_num: "123-456-7890")
   end
   let (:new_passenger_hash) {
     {
         passenger: {
-            ride_id: 1,
             name: "Sample Person",
             phone_num: "123-456-7890"
         },
     }
   }
     let (:passenger) {
-      Passenger.create ride_id: 1, name: "Sample Person",
+      Passenger.create name: "Sample Person",
                        phone_num: "123-456-7890"
     }
   # Confirm that I'm using let correctly. Can I have multiple let-blocks?
@@ -31,7 +30,7 @@ describe PassengersController do
       get passenger_path(passenger.id)
 
       must_respond_with :success
-      expect(passenger.ride_id).must_be_instance_of Integer
+      expect(passenger.id).must_be_instance_of Integer
       expect(passenger.name).must_be_instance_of String
       expect(passenger.phone_num).must_be_instance_of String
 
@@ -57,7 +56,6 @@ describe PassengersController do
     it "can create a new passenger" do
       passenger_hash = {
           passenger: {
-              ride_id: 2,
               name: "New Passenger",
               phone_num: "234-523-1236"
           },
