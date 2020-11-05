@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
 
   root to: 'homepages#index'
+
+  resources :homepages, only: [:index]
+
   get '/trips', to: 'trips#index', as: 'trips'
   get '/trips/new', to: 'trips#new', as: 'new_trip'
   post '/trips', to: 'trips#create'
@@ -14,19 +17,25 @@ Rails.application.routes.draw do
 
 
   # driver routes
-  get '/drivers', to: 'drivers#index', as: 'drivers'
-  get '/drivers/new', to: 'drivers#new', as: 'new_driver'
-  post '/drivers', to: 'drivers#create'
+  resources :drivers
 
-
-  get '/drivers/:id', to: 'drivers#show', as: 'driver'
-  get '/drivers/:id/edit', to: 'drivers#edit', as: 'edit_driver'
-  patch '/drivers/:id', to: 'drivers#update'
-  get 'drivers/:id/confirm_delete', to: 'drivers#confirm', as: 'confirm_driver'
-  delete '/drivers/:id', to: 'drivers#delete'
+  # get '/drivers', to: 'drivers#index', as: 'drivers'
+  # get '/drivers/new', to: 'drivers#new', as: 'new_driver'
+  # post '/drivers', to: 'drivers#create'
+  #
+  #
+  # get '/drivers/:id', to: 'drivers#show', as: 'driver'
+  # get '/drivers/:id/edit', to: 'drivers#edit', as: 'edit_driver'
+  # patch '/drivers/:id', to: 'drivers#update'
+  # get 'drivers/:id/confirm_delete', to: 'drivers#confirm', as: 'confirm_driver'
+  # delete '/drivers/:id', to: 'drivers#delete'
 
   # Passengers routes
-  resources :passengers
+  resources :passengers do
+    resources :trips, only: [:create]
+  end
+
+  resources :trips
   # get '/passengers', to: 'passengers#index', as: 'passengers'
   # get '/passengers/new', to: 'passengers#new', as: 'new_passenger'
   # post '/passengers', to: 'passengers#create'

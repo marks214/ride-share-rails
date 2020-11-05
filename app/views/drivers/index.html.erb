@@ -1,23 +1,15 @@
-<h1>Drivers</h1>
-<h3>
-  <%= link_to 'Add Driver', new_driver_path %>
-  <%= link_to 'Main Menu', root_path %>
-</h3>
+<h3>Drivers:</h3>
+<%= link_to 'Home', root_path %> ||
+<%= link_to 'Add Driver', new_driver_path %>
 
-<% @drivers.each do |driver| %>
-  <div class="driver">
-
-    <ul>
+<ul>
+  <% if @drivers.length > 0 %>
+  <% @drivers.each do |driver| %>
       <li>
-        <%= driver.ride_id %>
         <%= link_to driver.name, driver_path(driver) %>
-        <%= driver.vin %>
-        <%= driver.available %>
       </li>
-      <li>
-        <%= link_to 'Edit Driver', edit_driver_path(driver.id) %>
-        <%= link_to 'Delete Driver', confirm_driver_path(driver.id) %>
-      </li>
-    </ul>
-  </div>
-<% end %>
+  <% end %>
+  <%else %>
+    No drivers
+  <% end %>
+</ul>

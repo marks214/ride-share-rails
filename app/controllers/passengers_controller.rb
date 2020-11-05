@@ -49,13 +49,13 @@ class PassengersController < ApplicationController
   end
 
   def destroy
-    @passenger = Passenger.find_by(id: params[:id])
+    passenger = Passenger.find_by(id: params[:id])
 
-    if @passenger.nil?
+    if passenger.nil?
       redirect_to passengers_path
       return
     else
-      @passenger.destroy
+      passenger.destroy
       redirect_to passengers_path
       return
     end
@@ -64,7 +64,7 @@ class PassengersController < ApplicationController
   private
 
   def passenger_params
-    return params.require(:passenger).permit(:ride_id, :name, :phone_num)
+    return params.require(:passenger).permit(:id, :ride_id, :name, :phone_num)
   end
 
 end
