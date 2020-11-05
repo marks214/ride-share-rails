@@ -26,6 +26,9 @@ describe TripsController do
     #
     #   must_respond_with :success
     # end
+    #trip
+    get trip_path(trip.id)
+    must_respond_with :success
   end
 
   describe "create" do

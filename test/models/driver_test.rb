@@ -50,6 +50,7 @@ describe Driver do
     it "must have a VIN number" do
       # Arrange
       new_driver.vin = nil
+      new_driver.save
 
       # Assert
       expect(new_driver.valid?).must_equal false
