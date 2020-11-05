@@ -9,43 +9,8 @@
 </h4>
 
 <h5>VIN: <%= @driver.vin %></h5>
-
-<% if @trips.length >= 1 %>
-  <div class="driver">
-    <table class="table">
-    <tr>
-      <th>Trip ID</th>
-      <th>Passenger Name</th>
-      <th>Trip Cost</th>
-      <th>Trip Rating</th>
-    </tr>
-      <% total_earnings = 0.0 %>
-      <% sum_ratings = 0.0 %>
-      <% total_trips = 0 %>
-      <% @trips.each do |trip| %>
-        <tr>
-      <td><%= link_to trip.id, "/trips/#{trip.id}" %></td>
-      <td><%= trip.passenger.name %></td>
-      <td><%= number_to_currency(trip.cost) %>
-        <% total_earnings += trip.cost %></td>
-      <td><%= trip.rating %>
-        <% total_trips += 1 %>
-        <% sum_ratings += trip.rating %></td>
-        </tr>
-        <% end %>
-    </table>
-    <div class="info">
-      <h5>Gross Earnings:
-        <%= number_to_currency(total_earnings)%></h5>
-      <h5>Net Earnings:
-        <% net_earnings = 0.8 * (total_earnings - 1.65) %>
-        <%= number_to_currency(net_earnings) %></h5>
-      <h5>Average Rating:
-        <%= number_with_precision(sum_ratings / total_trips, :precision => 2)%></h5>
-    </div>
-<% else %>
-  <h2>No Trips to Date</h2>
-<% end %>
+<%= link_to "View All Trips", driver_trips_path(@driver.id) %>
+<br>
     <%= link_to 'Home', root_path %> ||
     <%= link_to 'Back', drivers_path %> ||
     <%= link_to 'Edit', edit_driver_path %> ||

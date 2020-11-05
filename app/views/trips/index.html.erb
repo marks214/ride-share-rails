@@ -1,11 +1,52 @@
 <h2>Test</h2>
 <ul>
-<% @trips.each do |trip|  %>
+  <% if @passenger %>
+    <% @trips.each do |trip|  %>
     <li>
-  <%= trip.driver_id %>
-  <%= trip.date %>
-  <%= trip.rating %>
-  <%= trip.cost %>
+      <%= trip.driver_id %>
+      <%= trip.date %>
+      <%= trip.rating %>
+      <%= trip.cost %>
+    <% end %>
     </li>
-<% end %>
-</ul>
+    </ul>
+
+  <% elsif @driver %>
+    <% if @trips.length >= 1 %>
+      <div class="driver">
+        <table class="table">
+          <tr>
+            <th>Trip ID</th>
+            <th>Passenger Name</th>
+            <th>Trip Cost</th>
+            <th>Trip Rating</th>
+          </tr>
+          <% total_earnings = 0.0 %>
+          <% sum_ratings = 0.0 %>
+          <% total_trips = 0 %>
+          <% @trips.each do |trip| %>
+            <tr>
+              <td><%= link_to trip.id, "/trips/#{trip.id}" %></td>
+              <td><%= trip.passenger.name %></td>
+              <td><%= number_to_currency(trip.cost / 100) %></td>
+              <td><%= trip.rating %></td>
+            </tr>
+          <% end %>
+        </table>
+        <div class="info">
+          <h5>Gross Earnings:
+            <%= number_to_currency(@driver.gross_earnings)%></h5>
+          <h5>Net Earnings:
+            <%= number_to_currency(@driver.net_earnings) %></h5>
+          <h5>Average Rating:
+            <%= number_with_precision(@driver.average_rating, :precision => 2)%></h5>
+        </div>
+    <% else %>
+      <h2>No Trips to Date</h2>
+    <% end %>
+    <%= link_to 'Home', root_path %> ||
+    <%= link_to 'Back', drivers_path %> ||
+    <%= link_to 'Delete', driver_path(@driver.id), method: :delete, data:{
+        confirm: "Are you sure you want to delete this driver?"}%>
+    </div>
+  <% end %>
