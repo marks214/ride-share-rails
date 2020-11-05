@@ -1,13 +1,26 @@
 <%= form_with model: @trip, class: 'create-trip' do |f| %>
-  <p>Please fill in the details to add a new trip:</p>
+  <p>Please fill in the details to add a new trip for <%= @passenger.name %>:</p>
 
   <div class="trip-form">
-    <%= f.label :driver_id %>
-    <%= f.text_field :driver_id, required: true %>
+    <%= f.label :date, "Date:" %>
+    <%= f.date_field :date %>
 
-    <%= f.label :passenger_id %>
+    <%= f.label :driver_id, "Driver ID:" %>
+    <%= f.select :driver_id, Driver.all.map { |driver| (driver.name) } %>
+
+    <%= f.label :passenger_id, "Passenger ID:" %>
     <%= f.text_field :passenger_id, required: true %>
-  </div>
 
+    <%= f.label :rating, "Rate Trip:" %>
+    <%= f.select :rating, [
+        ['⭐️', 1],
+        ['⭐⭐', 2],
+        ['⭐⭐⭐', 3],
+        ['⭐⭐⭐⭐', 4],
+        ['⭐⭐⭐⭐⭐', 5],
+    ] %>
+  </div>
+  <br>
   <%= f.submit action_name  %>
 <% end  %>
+<%= link_to "Back", passenger_trips_path %>
