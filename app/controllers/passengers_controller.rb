@@ -1,6 +1,11 @@
 class PassengersController < ApplicationController
   def index
-    @passengers = Passenger.all
+    if params[:trip_id].nil?
+      @passengers = Passenger.all
+    else
+      @trip = Trip.find_by(id: params[:id]).passengers
+      @passengers = @trip.passengers
+    end
   end
 
   def show
@@ -16,7 +21,12 @@ class PassengersController < ApplicationController
   end
 
   def new
-    @passenger = Passenger.new
+    if params[:trip_id].nil?
+      @passenger = Passenger.new
+    else
+      trip = Trip.find_by(id: params[:trip_id])
+      @passenger = trip.passengers.new
+    end
   end
 
   def create

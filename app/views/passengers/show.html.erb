@@ -24,7 +24,7 @@
   <% end %>
 </table>
 
-<p>Total amount charged: </p>
+<p>Total amount charged: <%= number_to_currency(@passenger.sum_total) %></p>
 <%= link_to "Back", passengers_path %> ||
 <%= link_to "Edit", edit_passenger_path %> ||
 <%= link_to "Delete", passenger_path(@passenger.id), method: :delete, data: {
