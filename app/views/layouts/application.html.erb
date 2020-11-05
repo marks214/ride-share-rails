@@ -10,6 +10,11 @@
   </head>
 
   <body>
+  <nav>
+    <%= link_to "Home", root_path %> ||
+    <%= link_to "Driver's List", drivers_path %> ||
+    <%= link_to "Passenger's List", passengers_path %>
+  </nav>
   <h1>Welcome to the RideShare App!!!</h1>
     <%= yield %>
     <footer>©2020</footer>

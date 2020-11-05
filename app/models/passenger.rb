@@ -4,7 +4,7 @@ class Passenger < ApplicationRecord
   validates :phone_num, presence: true
 
   def sum_total
-    total_sum = trips.sum(&:cost)
+    total_sum = trips.sum(&:cost) / 100
     return total_sum
   end
 
