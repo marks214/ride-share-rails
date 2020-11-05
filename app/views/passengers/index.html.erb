@@ -1,7 +1,6 @@
 <h3>Passengers:</h3>
-<%= link_to "Home", root_path %> ||
 <%= link_to "Add Passenger", new_passenger_path %>
-<ul>
+<ol>
   <% if @passengers.length > 0 %>
   <% @passengers.each do |passenger|  %>
     <li>
@@ -11,4 +10,4 @@
   <% else %>
     No passengers
   <% end %>
-</ul>
+</ol>

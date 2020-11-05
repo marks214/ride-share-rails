@@ -6,8 +6,7 @@ class PassengersController < ApplicationController
   def show
     passenger_id = params[:id].to_i
     @passenger = Passenger.find_by(id: passenger_id)
-    @trips = Trip.where(passenger_id: @passenger.id)
-    # @trip = Trip.find_by(id: params[:id]).passenger
+    @trips = Trip.where(passenger_id: passenger_id)
     @driver = Driver.find_by(id: params[:id])
 
     if @passenger.nil?
@@ -67,7 +66,7 @@ class PassengersController < ApplicationController
   private
 
   def passenger_params
-    return params.require(:passenger).permit(:id, :name, :phone_num, :trip_id)
+    return params.require(:passenger).permit(:id, :name, :phone_num)
   end
 
 end
