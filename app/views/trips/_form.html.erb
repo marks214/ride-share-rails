@@ -28,6 +28,15 @@
       <br>
       <%= f.label :driver_id, "Driver ID: #{@trip.driver_id}" %>
       <%= f.hidden_field :driver_id, required: true %>
+      <br>
+      <%= f.label :rating, "Rate Trip:" %>
+      <%= f.select :rating, [
+          ['⭐️', 1],
+          ['⭐⭐', 2],
+          ['⭐⭐⭐', 3],
+          ['⭐⭐⭐⭐', 4],
+          ['⭐⭐⭐⭐⭐', 5],
+      ] %>
 
     <% end %>
   </div>

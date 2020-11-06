@@ -42,7 +42,7 @@ class TripsController < ApplicationController
     @passenger = Passenger.find_by(id: @trip.passenger_id)
 
       if @trip.save
-        redirect_to root_path
+        redirect_to trip_path(@trip.id)
         return
       else
         render :new
