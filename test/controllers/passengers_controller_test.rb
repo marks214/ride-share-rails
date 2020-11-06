@@ -12,10 +12,10 @@ describe PassengersController do
         },
     }
   }
-    let (:passenger) {
-      Passenger.create name: "Sample Person",
-                       phone_num: "123-456-7890"
-    }
+  let (:passenger) {
+    Passenger.create name: "Sample Person",
+                     phone_num: "123-456-7890"
+  }
   # Confirm that I'm using let correctly. Can I have multiple let-blocks?
   describe "index" do
     it "can get the passengers index path" do
@@ -116,6 +116,7 @@ describe PassengersController do
   describe "destroy" do
     it "can destroy an existing passenger" do
       id = Passenger.first.id
+      # passenger_count = Passenger.all.count
 
       expect {
         delete passenger_path(id)

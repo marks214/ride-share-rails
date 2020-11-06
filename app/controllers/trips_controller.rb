@@ -14,8 +14,8 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find_by(id: params[:id])
-    @driver = @trip.driver
-    @passenger = @trip.passenger
+    # @driver = @trip.driver
+    # @passenger = @trip.passenger
     if @trip.nil?
       redirect_to trip_path
       return
