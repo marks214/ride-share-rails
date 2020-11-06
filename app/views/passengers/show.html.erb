@@ -12,7 +12,7 @@
   <td><%= @passenger.id %></td>
   <td><%= @passenger.phone_num %></td>
   <td><%= link_to "View All Trips", passenger_trips_path(@passenger.id) %></td>
-  <td><%= number_to_currency(@passenger.sum_total) %></td>
+  <td><%= number_to_currency(@passenger.total_cost) %></td>
   </tr>
 </table>
 <div class ="info">
