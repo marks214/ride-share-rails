@@ -4,13 +4,14 @@
   <div class="trip-form">
     <%= f.label :date, "Date:" %>
     <%= f.date_field :date %>
-
-
+<br>
+<% if @passenger %>
     <%= f.label :driver_id, "Driver ID:" %>
-    <%= f.select :driver_id, Driver.where(available: true).map { |driver| [driver.name] } %>
-
-    <%= f.label :passenger_id, "Passenger ID:" %>
-    <%= f.text_field :passenger_id, required: true %>
+    <%= f.select :driver_id, Driver.where(available: true).map { |driver| [driver.name, driver.id] } %>
+<br>
+    <%= f.label :passenger_id, "Passenger ID: #{@trip.passenger_id}" %>
+    <%= f.hidden_field :passenger_id, required: true %>
+<br>
 
     <%= f.label :rating, "Rate Trip:" %>
     <%= f.select :rating, [
@@ -20,6 +21,15 @@
         ['⭐⭐⭐⭐', 4],
         ['⭐⭐⭐⭐⭐', 5],
     ] %>
+
+    <% else %>
+      <%= f.label :passenger_id, "Passenger Name:" %>
+      <%= f.select :passenger_id, Passenger.all.map { |passenger| [passenger.name, passenger.id] } %>
+      <br>
+      <%= f.label :driver_id, "Driver ID: #{@trip.driver_id}" %>
+      <%= f.hidden_field :driver_id, required: true %>
+
+    <% end %>
   </div>
   <br>
   <%= f.submit action_name  %>

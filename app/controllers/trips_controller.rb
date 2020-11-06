@@ -36,27 +36,33 @@ class TripsController < ApplicationController
   end
 
   def create
-    # @trip = Trip.find_by(id: params[:id])
+    @trip = Trip.new(trip_params)
+    @trip[:cost] = rand(500..5000)
+    @driver = Driver.find_by(id: @trip.driver_id)
+    @passenger = Passenger.find_by(id: @trip.passenger_id)
 
-    if params[:passenger_id]
-      @passenger = Passenger.find_by(id: params[:passenger_id])
-      @trip = @passenger.trips.save
-      redirect_to passenger_trips_path
-    elsif params[:driver_id]
-      @trip.save
-      redirect_to driver_trips_path
+      if @trip.save
+        redirect_to root_path
+        return
       else
         render :new
-    end
-    # @trip = Trip.new(trip_params)
-    #
-    # if @trip.save
-    #   redirect_to trip_path(@trip)
-    #   return
-    # else
-    #   render :new
-    # end
+      end
   end
+
+
+
+    #@trip[:passenger_id] = @trip.passenger_id
+    #@passenger = Passenger.find_by(id: params[:passenger_id])
+    #   @trip = @passenger.trips.save
+    #   redirect_to passenger_trips_path
+    # elsif params[:driver_id]
+    #   @trip.save
+    #   redirect_to driver_trips_path
+    #   else
+    #     render :new
+    # end
+    # @trip = Trip.new(trip_params)
+
 
   def edit
     @trip = Trip.find_by(id: params[:id])
