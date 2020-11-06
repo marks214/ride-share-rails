@@ -36,7 +36,6 @@
 <!--<h5>VIN: <%#= @driver.vin %></h5>-->
 <%#= link_to "View All Trips", driver_trips_path(@driver.id) %>
 <br>
-    <%= link_to 'Home', root_path %> ||
     <%= link_to 'Back', drivers_path %> ||
     <%= link_to 'Edit', edit_driver_path %> ||
     <%= link_to 'Delete', driver_path(@driver.id), method: :delete, data:{
