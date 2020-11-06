@@ -44,19 +44,26 @@ class TripsController < ApplicationController
         return
       else
         render :new
+        return
       end
   end
 
   def edit
     @trip = Trip.find_by(id: params[:id])
+    if @trip.nil?
+      redirect_to trip_path
+      return
+    end
 
     if params[:passenger_id]
       @trip = Trip.find_by(id: params[:id])
       @passenger.trips.save
       redirect_to passenger_trips_path
+      return
     elsif params[:driver_id]
       @trip.save
       redirect_to driver_trips_path
+      return
     end
 
   end
@@ -65,10 +72,15 @@ class TripsController < ApplicationController
     @trip = Trip.find_by(id: params[:id])
 
     if @trip.nil?
-      redirect_to trip_path # change later to  driver or passenger's list of trips
-    else
-      @trip.update
-      redirect_to trip_path # change later to  driver or passenger's list of trips
+      redirect_to root_path
+      return
+    end
+
+    result = @trip.update(trip_params)
+
+    if result
+      redirect_to root_path
+      return
     end
   end
 
@@ -76,11 +88,13 @@ class TripsController < ApplicationController
     @trip = Trip.find_by(id: params[:id])
 
     if @trip.nil?
-      redirect_to trip_path # change later to  driver or passenger's list of trips
+      redirect_to root_path
       return
-    elsif @trip.destroy
-      redirect_to trip_path # change later to  driver or passenger's list of trips
-  end
+    else
+      @trip.destroy
+      redirect_to root_path
+      return
+    end
 end
 
   private
