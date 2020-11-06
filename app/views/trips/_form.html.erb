@@ -5,8 +5,9 @@
     <%= f.label :date, "Date:" %>
     <%= f.date_field :date %>
 
+
     <%= f.label :driver_id, "Driver ID:" %>
-    <%= f.select :driver_id, Driver.all.map { |driver| (driver.name) } %>
+    <%= f.select :driver_id, Driver.where(available: true).map { |driver| [driver.name] } %>
 
     <%= f.label :passenger_id, "Passenger ID:" %>
     <%= f.text_field :passenger_id, required: true %>
