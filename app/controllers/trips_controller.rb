@@ -14,8 +14,8 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find_by(id: params[:id])
-    # @driver = @trip.driver
-    # @passenger = @trip.passenger
+    @driver = @trip.driver
+    @passenger = @trip.passenger
     if @trip.nil?
       redirect_to trip_path
       return
@@ -36,23 +36,46 @@ class TripsController < ApplicationController
   end
 
   def create
-    @trip = Trip.new(trip_params)
+    # @trip = Trip.find_by(id: params[:id])
 
-    if @trip.save
-      redirect_to trip_path(@trip)
-      return
-    else
-      render :new
+    if params[:passenger_id]
+      @passenger = Passenger.find_by(id: params[:passenger_id])
+      @trip = @passenger.trips.save
+      redirect_to passenger_trips_path
+    elsif params[:driver_id]
+      @trip.save
+      redirect_to driver_trips_path
+      else
+        render :new
     end
+    # @trip = Trip.new(trip_params)
+    #
+    # if @trip.save
+    #   redirect_to trip_path(@trip)
+    #   return
+    # else
+    #   render :new
+    # end
   end
 
   def edit
     @trip = Trip.find_by(id: params[:id])
 
-    if @trip.nil?
-      redirect_to trip_path # change later to  driver or passenger's list of trips
-      return
+    if params[:passenger_id]
+      @trip = Trip.find_by(id: params[:id])
+      @passenger.trips.save
+      redirect_to passenger_trips_path
+    elsif params[:driver_id]
+      @trip.save
+      redirect_to driver_trips_path
+    # else
+    #   redirect_to trip_path
     end
+    #
+    # if @trip.nil?
+    #   redirect_to trip_path # change later to  driver or passenger's list of trips
+    #   return
+    # end
   end
 
   def update
