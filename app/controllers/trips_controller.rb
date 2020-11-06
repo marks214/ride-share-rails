@@ -65,7 +65,6 @@ class TripsController < ApplicationController
       redirect_to driver_trips_path
       return
     end
-
   end
 
   def update
