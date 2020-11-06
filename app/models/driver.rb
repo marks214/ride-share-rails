@@ -16,8 +16,13 @@ class Driver < ApplicationRecord
   def average_rating
     sum_ratings = trips.sum(&:rating)
     total_trips = trips.length
-    average = sum_ratings / total_trips
-    return average
+    if total_trips > 0
+      average = sum_ratings / total_trips
+      return average
+    else
+      return 0
+    end
+
   end
 
 end
