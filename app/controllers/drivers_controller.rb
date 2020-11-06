@@ -5,8 +5,15 @@ class DriversController < ApplicationController
 
   def show
     @driver = Driver.find_by(id: params[:id])
+
+    if @driver.nil?
+      redirect_to drivers_path
+      return
+    end
+
     @trips = Trip.where(driver_id: @driver.id)
     @passengers = Passenger.find_by(id: params[:id])
+
   end
 
   def new
@@ -15,12 +22,16 @@ class DriversController < ApplicationController
 
   def create
     @driver = Driver.new(driver_params)
+    # default: a new driver is available
+    @driver[:available] = true
     result = @driver.save
 
     if result
-      redirect_to drivers_path
+      redirect_to driver_path(@driver.id)
+      return
     else
       render :new
+      return
     end
   end
 
@@ -28,8 +39,8 @@ class DriversController < ApplicationController
     @driver = Driver.find_by(id: params[:id])
 
     if @driver.nil?
-      # redirect_to drivers_path?
-      # return
+      redirect_to drivers_path
+      return
     end
   end
 
@@ -37,14 +48,14 @@ class DriversController < ApplicationController
     @driver = Driver.find_by(id: params[:id])
 
     if @driver.nil?
-      # redirect_to root_path?
-      # return
+      redirect_to drivers_path
+      return
     end
 
     result = @driver.update(driver_params)
 
     if result
-      redirect_to drivers_path
+      redirect_to driver_path
     else
       render :edit
     end

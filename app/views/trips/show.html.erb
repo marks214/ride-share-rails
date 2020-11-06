@@ -13,7 +13,7 @@
       <td><%= link_to @trip.passenger.name, "/passengers/#{@trip.passenger.id}" %></td>
       <td><%= link_to @trip.driver.name, "/drivers/#{@trip.driver.id}" %></td>
       <td><%= @trip.date %></td>
-      <td><%= number_to_currency(@trip.cost) %></td>
+      <td><%= number_to_currency(@trip.cost / 100) %></td>
       <% if @trip.rating %>
         <td><%= @trip.rating%></td>
       <% else %>
