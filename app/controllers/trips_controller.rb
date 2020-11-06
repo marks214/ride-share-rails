@@ -58,7 +58,6 @@ class TripsController < ApplicationController
       @trip.save
       redirect_to driver_trips_path
     end
-
   end
 
   def update
