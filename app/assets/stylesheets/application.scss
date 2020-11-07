@@ -12,6 +12,29 @@
  *
  */
 
+body h1 {
+    text-align: center;
+    margin: auto;
+}
+
+body {
+    margin: auto;
+    padding: auto;
+    background-color: #a3a5cf;
+    margin-left: 5%;
+}
+
+.nav-links {
+   text-align: center;
+}
+
+footer {
+    position: static;
+    bottom: 0;
+    height: 2.5em;
+
+}
+
 /* Custom bootstrap variables must be set or imported *before* bootstrap. */
 @import "bootstrap";
 
