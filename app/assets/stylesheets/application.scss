@@ -17,10 +17,13 @@
 
 @import "**/*";
 
-body h1 {
+header h1 {
+  display: flex;
+  justify-content: center;
   position: static;
   text-align: center;
   margin: auto;
+  padding: .5em;
 }
 body {
   position: static;
@@ -28,16 +31,35 @@ body {
   background-color: #a3a5cf;
   margin-left: 5%;
 }
+
 .nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: .5em;
   position: static;
-  text-align: center;
+  align-content: center;
+  color: black;
+
+}
+
+.nav-buttons {
+  color: #363738;
+  padding: .5em;
+  //text-decoration: none;
+}
+
+.nav-buttons:hover {
+  color: black;
+  text-decoration: none;
+
 }
 
 footer {
   position: relative;
-  width: 50%;
-  bottom: 5px;
-  border: 3px solid #8AC007;
+  //width: 100%;
+  bottom: 0;
+  border-top: 1px solid #8AC007;
 }
 
 
