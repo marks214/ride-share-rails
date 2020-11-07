@@ -16,3 +16,29 @@
 @import "bootstrap";
 
 @import "**/*";
+
+body h1 {
+  position: static;
+  text-align: center;
+  margin: auto;
+}
+body {
+  position: static;
+  padding: auto;
+  background-color: #a3a5cf;
+  margin-left: 5%;
+}
+.nav-links {
+  position: static;
+  text-align: center;
+}
+
+footer {
+  position: relative;
+  width: 50%;
+  bottom: 5px;
+  border: 3px solid #8AC007;
+}
+
+
+
